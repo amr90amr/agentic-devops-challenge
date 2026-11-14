@@ -1,16 +1,16 @@
 # CloudWatch Log Group
 resource "aws_cloudwatch_log_group" "ecs_logs" {
-  name = "/ecs/challenge-app-v3"
+  name = "/ecs/challenge-app-v4"
 }
 
 # ECS Cluster
 resource "aws_ecs_cluster" "main" {
-  name = "challenge-cluster"
+  name = "challenge-cluster-v4"
 }
 
 # IAM Execution Role
 resource "aws_iam_role" "ecs_execution_role" {
-  name = "challenge_ecs_execution_role_v3"
+  name = "challenge_ecs_execution_role_v4"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -33,7 +33,7 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_role_policy" {
 
 # ECS Task Definition
 resource "aws_ecs_task_definition" "app" {
-  family                   = "challenge-task"
+  family                   = "challenge-task-v4"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
@@ -65,7 +65,7 @@ resource "aws_ecs_task_definition" "app" {
 
 # ECS Service
 resource "aws_ecs_service" "app" {
-  name            = "challenge-service"
+  name            = "challenge-service-v4"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = 1

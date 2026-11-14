@@ -92,7 +92,7 @@ resource "aws_route_table_association" "pub_2" {
 
 # ALB Security Group
 resource "aws_security_group" "alb_sg" {
-  name        = "alb-security-group"
+  name        = "alb-security-group-v4"
   description = "Allow HTTP traffic to ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -112,13 +112,13 @@ resource "aws_security_group" "alb_sg" {
   }
 
   tags = {
-    Name = "alb-sg"
+    Name = "alb-sg-v4"
   }
 }
 
 # ECS Security Group
 resource "aws_security_group" "ecs_sg" {
-  name        = "ecs-security-group"
+  name        = "ecs-security-group-v4"
   description = "Allow inbound traffic for ECS tasks"
   vpc_id      = aws_vpc.main.id
 
@@ -138,6 +138,6 @@ resource "aws_security_group" "ecs_sg" {
   }
 
   tags = {
-    Name = "ecs-sg"
+    Name = "ecs-sg-v4"
   }
 }
