@@ -1,6 +1,6 @@
 # CloudWatch Log Group
 resource "aws_cloudwatch_log_group" "ecs_logs" {
-  name = "/ecs/challenge-app-v2"
+  name = "/ecs/challenge-app-v3"
 }
 
 # ECS Cluster
@@ -10,7 +10,7 @@ resource "aws_ecs_cluster" "main" {
 
 # IAM Execution Role
 resource "aws_iam_role" "ecs_execution_role" {
-  name = "challenge_ecs_execution_role_v2"
+  name = "challenge_ecs_execution_role_v3"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
