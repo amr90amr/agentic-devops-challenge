@@ -1,4 +1,3 @@
-# Application Load Balancer
 resource "aws_lb" "main" {
   name               = "app-load-balancer"
   internal           = false
@@ -13,7 +12,6 @@ resource "aws_lb" "main" {
   }
 }
 
-# ALB Security Group
 resource "aws_security_group" "alb_sg" {
   name        = "alb-security-group"
   description = "Allow HTTP traffic to ALB"
@@ -39,7 +37,6 @@ resource "aws_security_group" "alb_sg" {
   }
 }
 
-# Target Group
 resource "aws_lb_target_group" "target_group" {
   name        = "app-target-group"
   port        = 80
@@ -56,7 +53,6 @@ resource "aws_lb_target_group" "target_group" {
   }
 }
 
-# Listener
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.main.arn
   port              = "80"
