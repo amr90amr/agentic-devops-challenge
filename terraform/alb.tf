@@ -4,7 +4,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [aws_subnet.subnet_1.id, aws_subnet.subnet_2.id] # تأكد إن دي أسماء السبنتس عندك لو مخلفة
+  subnets            = [aws_subnet.subnet_1.id, aws_subnet.subnet_2.id]
 
   enable_deletion_protection = false
 
