@@ -1,0 +1,29 @@
+cat << 'EOF' > .github/workflows/terraform-pipeline.yml
+name: Terraform Pipeline
+
+on:
+  push:
+    branches: [ devel, main ]
+  pull_request:
+    branches: [ devel, main ]
+
+jobs:
+  terraform:
+    name: Validate Terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        run: terraform validate
+EOF
